@@ -1,0 +1,25 @@
+body{
+    margin:0;
+    padding:0;
+}
+.seckill{
+    width:400px;
+    height:300px;
+    margin: 0 auto;
+    background:red;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+   
+    
+}
+.seckill .item {
+    width:80px;
+    height:100px;
+    line-height: 100px;
+    background-color: #fff;
+    border:1px solid #e9e9e9;
+    font-size: 20px;
+    text-align: center;
+    
+}
