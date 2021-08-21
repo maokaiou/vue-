@@ -40,14 +40,16 @@
                     <td>{{item.publicData}}</td>
                     <td>{{'￥'+item.price}}</td>
                     <td>
-                        <button>-</button> {{item.value}} <button>+</button>
+                        <button :disabled="item.count === 1" @click="decreaseCount(index)">-</button>
+                         {{item.count}} 
+                         <button @click="increaseCount(index)">+</button>
                     </td>
                     <td>
-                        <button @click="deleteBook(item.id)">移除</button>
+                        <button @click="removeHandle(index)">移除</button>
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="6">总价格:</td>
+                    <td colspan="6">总价格:{{totalPrice}}</td>
                 </tr>
             </tbody>
         </table>
@@ -64,42 +66,52 @@
                         name:'算法导论',
                         publicData:'2006-9',
                         price:'85.00',
-                        value:'1'
+                        count:'1'
                     },
                     {
                         id:2,
                         name:'UNIX编程艺术',
                         publicData:'2006-2',
                         price:'50.00',
-                        value:'1'
+                        count:'1'
                     },
                     {
                         id:3,
                         name:'编程珠玑',
                         publicData:'2006-5',
                         price:'45.00',
-                        value:'1'
+                        count:'1'
                     },
                     {
                         id:4,
                         name:'代码大全',
                         publicData:'2006-4',
                         price:'35.00',
-                        value:'1'
+                        count:'1'
                     }
                 ]
+            
             },
             computed:{
-                
+                totalPrice(){
+                    let total = 0
+                    for(var i of this.booksDetail){
+                        total += i.price * i.count
+                    }
+                    return total
+                }
             },
             methods:{
-                // deleteBook(id){
-                //     for(let i in this.booksDetail){
-                //         if(i.id === id){
-                //             this.booksDetail.splice(,1)
-                //         }
-                //     }
-                // }
+              decreaseCount(index){
+                this.booksDetail[index].count--
+              },
+              increaseCount(index){
+                this.booksDetail[index].count++
+              },
+              removeHandle(index){
+                this.booksDetail.splice(index,1)
+                console.log(this.booksDetail)
+              }
             }
         })
     </script>
